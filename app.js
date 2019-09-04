@@ -12,28 +12,21 @@ GAME RULES:
 let totalScores;
 let roundScore;
 let activePlayer;
-let dice;
-
-let rollbtn;
 
 totalScores = [0, 0];
 roundScore = 0;
 activePlayer = 0;
 
-dice = 6;
-
-function rollAndUpdateDie() {}
-
 function rollDie() {
   const roll = Math.floor(Math.random() * 6) + 1;
+  document.getElementById("#current-" + activePlayer).innerHTML =
+    "<em>" + roll + "</em>";
 
-  document
-    .getElementsByClassName("dice")
-    .item(0)
-    .setAttribute("src", "dice-" + roll + ".jpg");
+  const diceDOM = document.querySelector(".dice");
+  diceDOM.style.display = "block";
+  diceDOM.src = "dice-" + roll + ".png";
 }
 
-document.onload(function() {
-  rollbtn = document.getElementsByClassName("btn-roll").item(0);
-  rollbtn.onclick = rollDie;
-});
+document.querySelector(".dice").style.display = "none";
+
+document.querySelector(".btn-roll").addEventListener("click", rollDie);
