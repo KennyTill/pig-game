@@ -13,39 +13,63 @@ let totalScores;
 let roundScore;
 let activePlayer;
 
-
 function rollDie() {
   const roll = Math.floor(Math.random() * 6) + 1;
   document.getElementById("current-" + activePlayer).innerHTML =
-    "<em>" + roll + "</em>";
+    "<em>" + roundScore + "</em>";
 
   const diceDOM = document.querySelector(".dice");
   diceDOM.style.display = "block";
   diceDOM.src = "dice-" + roll + ".png";
+
+  if (roll > 1) {
+    // add the score to current
+    roundScore += roll;
+    document.getElementById("current-" + activePlayer).innerHTML =
+      "<em>" + roundScore + "</em>";
+  } else {
+    //next player
+    document.getElementById("current-" + activePlayer).innerHTML = "0";
+    roundScore = 0;
+    togglePlayer();
+  }
+}
+
+function togglePlayer() {
+  if (activePlayer === 0) {
+    activePlayer = 1;
+  } else {
+    activePlayer = 0;
+  }
+
 }
 
 //game setup
-function newGame(){
+function newGame() {
   document.querySelector(".dice").style.display = "none";
   document.getElementById("score-0").textContent = "0";
   document.getElementById("score-1").textContent = "0";
   document.getElementById("current-0").textContent = "0";
   document.getElementById("current-1").textContent = "0";
-  totalScores = [0,0];
+  totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
   console.log("new game called");
 }
 
-function holdScore(){
-
+function holdScore() {
+  totalScores[activePlayer] += roundScore;
+  document.getElementById("score-" + activePlayer).textContent = totalScores[activePlayer];
+  document.getElementById("current-" + activePlayer).textContent = "0";
+  roundScore = 0;
+  togglePlayer();
+  document.querySelector(".dice").style.display = "none";
 }
 
 //Assigning Buttons
 document.querySelector(".btn-roll").addEventListener("click", rollDie);
 document.querySelector(".btn-new").addEventListener("click", newGame);
 document.querySelector(".btn-hold").addEventListener("click", holdScore);
-
 
 //setup for first time play
 newGame();
