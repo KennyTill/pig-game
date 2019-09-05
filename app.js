@@ -36,13 +36,17 @@ function rollDie() {
 }
 
 function togglePlayer() {
-  document.querySelector(".player-"+activePlayer+"-panel").classList.remove("active");
+  document
+    .querySelector(".player-" + activePlayer + "-panel")
+    .classList.remove("active");
   if (activePlayer === 0) {
     activePlayer = 1;
   } else {
     activePlayer = 0;
   }
-  document.querySelector(".player-"+activePlayer+"-panel").classList.add("active");
+  document
+    .querySelector(".player-" + activePlayer + "-panel")
+    .classList.add("active");
 }
 
 //game setup
@@ -57,14 +61,27 @@ function newGame() {
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
-  console.log("new game called");
 }
 
 function holdScore() {
   totalScores[activePlayer] += roundScore;
-  document.getElementById("score-" + activePlayer).textContent = totalScores[activePlayer];
+  document.getElementById("score-" + activePlayer).textContent =
+    totalScores[activePlayer];
   document.getElementById("current-" + activePlayer).textContent = "0";
   roundScore = 0;
+
+  if (totalScores[activePlayer] >= 100) {
+    alert(
+      "Player " +
+        (activePlayer + 1) +
+        " wins with a score of " +
+        totalScores[activePlayer] +
+        "!"
+    );
+    newGame();
+    return;
+  }
+
   togglePlayer();
   document.querySelector(".dice").style.display = "none";
 }
