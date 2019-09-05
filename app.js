@@ -36,12 +36,13 @@ function rollDie() {
 }
 
 function togglePlayer() {
+  document.querySelector(".player-"+activePlayer+"-panel").classList.remove("active");
   if (activePlayer === 0) {
     activePlayer = 1;
   } else {
     activePlayer = 0;
   }
-
+  document.querySelector(".player-"+activePlayer+"-panel").classList.add("active");
 }
 
 //game setup
@@ -51,6 +52,8 @@ function newGame() {
   document.getElementById("score-1").textContent = "0";
   document.getElementById("current-0").textContent = "0";
   document.getElementById("current-1").textContent = "0";
+  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.add("active");
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
