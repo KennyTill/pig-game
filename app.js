@@ -13,13 +13,10 @@ let totalScores;
 let roundScore;
 let activePlayer;
 
-totalScores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
 
 function rollDie() {
   const roll = Math.floor(Math.random() * 6) + 1;
-  document.getElementById("#current-" + activePlayer).innerHTML =
+  document.getElementById("current-" + activePlayer).innerHTML =
     "<em>" + roll + "</em>";
 
   const diceDOM = document.querySelector(".dice");
@@ -27,13 +24,28 @@ function rollDie() {
   diceDOM.src = "dice-" + roll + ".png";
 }
 
-document.querySelector(".dice").style.display = "none";
-
-document.querySelector(".btn-roll").addEventListener("click", rollDie);
-
-
 //game setup
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
+function newGame(){
+  document.querySelector(".dice").style.display = "none";
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  totalScores = [0,0];
+  roundScore = 0;
+  activePlayer = 0;
+  console.log("new game called");
+}
+
+function holdScore(){
+
+}
+
+//Assigning Buttons
+document.querySelector(".btn-roll").addEventListener("click", rollDie);
+document.querySelector(".btn-new").addEventListener("click", newGame);
+document.querySelector(".btn-hold").addEventListener("click", holdScore);
+
+
+//setup for first time play
+newGame();
