@@ -38,13 +38,13 @@ function rollDie() {
 function togglePlayer() {
   document
     .querySelector(".player-" + activePlayer + "-panel")
-    .classList.remove("active");
+    .classList.toggle("active");
 
   activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
 
   document
     .querySelector(".player-" + activePlayer + "-panel")
-    .classList.add("active");
+    .classList.toggle("active");
 }
 
 //game setup
