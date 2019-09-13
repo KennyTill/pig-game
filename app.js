@@ -7,16 +7,34 @@ GAME RULES:
 - The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
 - The first player to reach 100 points on GLOBAL score wins the game
 
+-- additional rules --
+1: player loses entire score when they roll 2 6's in a row, then swap to next player.
+
+2: Allow players to set winning score so they can change the predefined score.
+
+3. add another dice to the game if both lose current score if either is a 1.
+
 */
 
 let totalScores;
 let roundScore;
 let activePlayer;
+let previousRoll;
 
 function rollDie() {
   const roll = Math.floor(Math.random() * 6) + 1;
   document.getElementById("current-" + activePlayer).innerHTML =
     "<em>" + roundScore + "</em>";
+
+  if (roll === 6 && previousRoll === 6){
+    totalScores[activePlayer] = 0;
+    document.getElementById("current-" + activePlayer).innerHTML = "0";
+    document.getElementById("score-" + activePlayer).textContent = "0";
+
+    togglePlayer();
+    return;
+  }
+  previousRoll = roll;
 
   const diceDOM = document.querySelector(".dice");
   diceDOM.style.display = "block";
@@ -45,6 +63,9 @@ function togglePlayer() {
   document
     .querySelector(".player-" + activePlayer + "-panel")
     .classList.toggle("active");
+
+  //adding so that the previous roll is not compared against the last player
+  previousRoll = 0;
 }
 
 function showExtraElements(shown) {
@@ -78,8 +99,8 @@ function newGame() {
   document.querySelector(".player-0-panel").classList.add("active");
   document.getElementById("name-0").innerText = "Player 1";
   document.getElementById("name-1").innerText = "Player 2";
-
   showExtraElements(true);
+  previousRoll = 0;
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
