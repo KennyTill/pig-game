@@ -56,6 +56,8 @@ function newGame() {
   document.getElementById("current-1").textContent = "0";
   document.querySelector(".player-1-panel").classList.remove("active");
   document.querySelector(".player-0-panel").classList.add("active");
+  document.getElementById("name-0").innerText = "Player 1";
+  document.getElementById("name-1").innerText = "Player 2";
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
@@ -69,14 +71,7 @@ function holdScore() {
   roundScore = 0;
 
   if (totalScores[activePlayer] >= 100) {
-    alert(
-      "Player " +
-        (activePlayer + 1) +
-        " wins with a score of " +
-        totalScores[activePlayer] +
-        "!"
-    );
-    newGame();
+    document.getElementById("name-" + activePlayer ).innerText = "Winner!";
     return;
   }
 
