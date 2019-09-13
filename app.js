@@ -77,6 +77,7 @@ function holdScore() {
     document.getElementById("name-" + activePlayer ).innerText = "Winner!";
     document.querySelector(".dice").style.display = "none";
     document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+    document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
 
     //let's also take away everything but the new game button.
     document.querySelector(".btn-roll").style.display = "none";
