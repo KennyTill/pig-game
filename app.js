@@ -39,11 +39,9 @@ function togglePlayer() {
   document
     .querySelector(".player-" + activePlayer + "-panel")
     .classList.remove("active");
-  if (activePlayer === 0) {
-    activePlayer = 1;
-  } else {
-    activePlayer = 0;
-  }
+
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
   document
     .querySelector(".player-" + activePlayer + "-panel")
     .classList.add("active");
