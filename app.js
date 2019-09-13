@@ -47,6 +47,25 @@ function togglePlayer() {
     .classList.toggle("active");
 }
 
+function showExtraElements(shown) {
+  const currentScoreBoxes = document.getElementsByClassName(
+    "player-current-box"
+  );
+  if (shown) {
+    document.querySelector(".btn-roll").style.display = "block";
+    document.querySelector(".btn-hold").style.display = "block";
+    for (let i = 0; i <= 1; i++) {
+      currentScoreBoxes.item(i).style.display = "block";
+    }
+  } else {
+    document.querySelector(".btn-roll").style.display = "none";
+    document.querySelector(".btn-hold").style.display = "none";
+    for (let i = 0; i <= 1; i++) {
+      currentScoreBoxes.item(i).style.display = "none";
+    }
+  }
+}
+
 //game setup
 function newGame() {
   document.querySelector(".player-0-panel").classList.remove("winner");
@@ -59,8 +78,8 @@ function newGame() {
   document.querySelector(".player-0-panel").classList.add("active");
   document.getElementById("name-0").innerText = "Player 1";
   document.getElementById("name-1").innerText = "Player 2";
-  document.querySelector(".btn-roll").style.display = "block";
-  document.querySelector(".btn-hold").style.display = "block";
+
+  showExtraElements(true);
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
@@ -74,14 +93,17 @@ function holdScore() {
   roundScore = 0;
 
   if (totalScores[activePlayer] >= 100) {
-    document.getElementById("name-" + activePlayer ).innerText = "Winner!";
+    document.getElementById("name-" + activePlayer).innerText = "Winner!";
     document.querySelector(".dice").style.display = "none";
-    document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
-    document.querySelector(".player-" + activePlayer + "-panel").classList.remove("active");
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.add("winner");
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.remove("active");
 
     //let's also take away everything but the new game button.
-    document.querySelector(".btn-roll").style.display = "none";
-    document.querySelector(".btn-hold").style.display = "none";
+    showExtraElements(false);
     return;
   }
 
