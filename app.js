@@ -49,7 +49,8 @@ function togglePlayer() {
 
 //game setup
 function newGame() {
-  document.querySelector(".dice").style.display = "none";
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
   document.getElementById("score-0").textContent = "0";
   document.getElementById("score-1").textContent = "0";
   document.getElementById("current-0").textContent = "0";
@@ -58,6 +59,8 @@ function newGame() {
   document.querySelector(".player-0-panel").classList.add("active");
   document.getElementById("name-0").innerText = "Player 1";
   document.getElementById("name-1").innerText = "Player 2";
+  document.querySelector(".btn-roll").style.display = "block";
+  document.querySelector(".btn-hold").style.display = "block";
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
@@ -72,6 +75,12 @@ function holdScore() {
 
   if (totalScores[activePlayer] >= 100) {
     document.getElementById("name-" + activePlayer ).innerText = "Winner!";
+    document.querySelector(".dice").style.display = "none";
+    document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner");
+
+    //let's also take away everything but the new game button.
+    document.querySelector(".btn-roll").style.display = "none";
+    document.querySelector(".btn-hold").style.display = "none";
     return;
   }
 
