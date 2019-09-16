@@ -89,6 +89,7 @@ function showExtraElements(shown) {
 
 //game setup
 function newGame() {
+  document.getElementById("span-score").classList.add("show");
   document.querySelector(".player-0-panel").classList.remove("winner");
   document.querySelector(".player-1-panel").classList.remove("winner");
   document.getElementById("score-0").textContent = "0";
@@ -132,10 +133,17 @@ function holdScore() {
   document.querySelector(".dice").style.display = "none";
 }
 
+function setScore(){
+
+  document.getElementById("span-score").classList.remove("show");
+
+}
+
 //Assigning Buttons
 document.querySelector(".btn-roll").addEventListener("click", rollDie);
 document.querySelector(".btn-new").addEventListener("click", newGame);
 document.querySelector(".btn-hold").addEventListener("click", holdScore);
+document.querySelector(".btn-start").addEventListener("click",setScore);
 
 //setup for first time play
 newGame();

@@ -48,7 +48,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
 
@@ -167,6 +167,10 @@ i {
   top: 467px;
 }
 
+.btn-start{
+  top: 155px;
+}
+
 .dice {
   position: absolute;
   left: 50%;
@@ -184,39 +188,45 @@ i {
   color: #eb4d4d;
 }
 
+/* custom score input */
+
 .popup {
-  position: relative;
+  /*position: absolute;*/
   display: inline-block;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 .popup .popup-info {
   visibility: hidden;
   width: 160px;
-  background-color: #555;
-  color: #fff;
+  background-color: #fff;
+  color: #555;
+  font-size: 17pt;
   text-align: center;
   border-radius: 6px;
-  padding: 8px 0;
   position: absolute;
   z-index: 1;
   bottom: 125%;
   left: 50%;
+  padding: 50px 0 8px;
   margin-left: -80px;
+  height: 200px;
 }
 
 .popup .popup-info::after {
   content: "";
-  position: absolute;
+  /*position: absolute;*/
   top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
-  border-style: solid;
+  /*border-style: solid;*/
   border-color: #555 transparent transparent transparent;
 }
 
 .popup .show {
+  top: 50%;
+  left: 50%;
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
@@ -230,4 +240,12 @@ i {
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity: 1;}
+}
+
+.input-custom-score{
+  width: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15pt;
+  text-align: center;
 }
