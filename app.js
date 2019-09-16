@@ -20,13 +20,14 @@ let totalScores;
 let roundScore;
 let activePlayer;
 let previousRoll;
+let targetScore;
 
 function rollDie() {
   const roll = Math.floor(Math.random() * 6) + 1;
   document.getElementById("current-" + activePlayer).innerHTML =
     "<em>" + roundScore + "</em>";
 
-  if (roll === 6 && previousRoll === 6){
+  if (roll === 6 && previousRoll === 6) {
     totalScores[activePlayer] = 0;
     document.getElementById("current-" + activePlayer).innerHTML = "0";
     document.getElementById("score-" + activePlayer).textContent = "0";
@@ -114,7 +115,7 @@ function holdScore() {
   document.getElementById("current-" + activePlayer).textContent = "0";
   roundScore = 0;
 
-  if (totalScores[activePlayer] >= 100) {
+  if (totalScores[activePlayer] >= targetScore) {
     document.getElementById("name-" + activePlayer).innerText = "Winner!";
     document.querySelector(".dice").style.display = "none";
     document
@@ -133,17 +134,36 @@ function holdScore() {
   document.querySelector(".dice").style.display = "none";
 }
 
-function setScore(){
-
+function setScore() {
+  const winTarget = document.getElementById("input-winning-score").value;
+  if (isNaN(winTarget) && winTarget.length > 0) {
+    alert(winTarget + " is not a valid number!");
+    document.getElementById("input-winning-score").value = "";
+    return;
+  } else if (winTarget.length === 0) {
+    targetScore = 100; //default value
+  } else {
+    targetScore = winTarget;
+  }
+  console.log("target score " + targetScore);
+  console.log("input score " + winTarget);
   document.getElementById("span-score").classList.remove("show");
-
 }
 
-//Assigning Buttons
+function keyboardListener(e) {
+  if (e.key === "Enter") {
+    setScore();
+  }
+}
+
+//Assigning Handlers
 document.querySelector(".btn-roll").addEventListener("click", rollDie);
 document.querySelector(".btn-new").addEventListener("click", newGame);
 document.querySelector(".btn-hold").addEventListener("click", holdScore);
-document.querySelector(".btn-start").addEventListener("click",setScore);
+document.querySelector(".btn-start").addEventListener("click", setScore);
+document
+  .getElementById("input-winning-score")
+  .addEventListener("keydown", keyboardListener);
 
 //setup for first time play
 newGame();
