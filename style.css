@@ -167,7 +167,7 @@ i {
   top: 467px;
 }
 
-.btn-start{
+.btn-start {
   top: 155px;
 }
 
@@ -191,9 +191,7 @@ i {
 /* custom score input */
 
 .popup {
-  /*position: absolute;*/
   display: inline-block;
-  /*cursor: pointer;*/
 }
 
 .popup .popup-info {
@@ -215,12 +213,10 @@ i {
 
 .popup .popup-info::after {
   content: "";
-  /*position: absolute;*/
   top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
-  /*border-style: solid;*/
   border-color: #555 transparent transparent transparent;
 }
 
@@ -233,16 +229,24 @@ i {
 }
 
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.input-custom-score{
+.input-custom-score {
   width: 50px;
   margin-top: 5px;
   margin-bottom: 5px;
