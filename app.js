@@ -127,8 +127,6 @@ function setScore() {
   } else {
     targetScore = winTarget;
   }
-  console.log("target score " + targetScore);
-  console.log("input score " + winTarget);
   document.getElementById("span-score").classList.remove("show");
 }
 
