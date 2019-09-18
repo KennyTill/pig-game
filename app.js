@@ -23,11 +23,11 @@ let previousRoll;
 let targetScore;
 
 function rollDie() {
-  const roll = Math.floor(Math.random() * 6) + 1;
+  const roll0 = Math.floor(Math.random() * 6) + 1;
   document.getElementById("current-" + activePlayer).innerHTML =
     "<em>" + roundScore + "</em>";
 
-  if (roll === 6 && previousRoll === 6) {
+  if (roll0 === 6 && previousRoll === 6) {
     totalScores[activePlayer] = 0;
     document.getElementById("current-" + activePlayer).innerHTML = "0";
     document.getElementById("score-" + activePlayer).textContent = "0";
@@ -35,15 +35,15 @@ function rollDie() {
     togglePlayer();
     return;
   }
-  previousRoll = roll;
+  previousRoll = roll0;
 
   const diceDOM = document.querySelector(".dice");
   diceDOM.style.display = "block";
-  diceDOM.src = "dice-" + roll + ".png";
+  diceDOM.src = "dice-" + roll0 + ".png";
 
-  if (roll > 1) {
+  if (roll0 > 1) {
     // add the score to current
-    roundScore += roll;
+    roundScore += roll0;
     document.getElementById("current-" + activePlayer).innerHTML =
       "<em>" + roundScore + "</em>";
   } else {
