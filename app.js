@@ -1,15 +1,19 @@
 let totalScores;
 let roundScore;
 let activePlayer;
-let previousRoll;
+let previousRoll0;
+let previousRoll1;
 let targetScore;
 
 function rollDie() {
-  const roll = Math.floor(Math.random() * 6) + 1;
+  const roll0 = Math.floor(Math.random() * 6) + 1;
+  const roll1 = Math.floor(Math.random() * 6 ) + 1;
+
+
   document.getElementById("current-" + activePlayer).innerHTML =
     "<em>" + roundScore + "</em>";
 
-  if (roll === 6 && previousRoll === 6) {
+  if (roll0 === 6 && previousRoll0 === 6) {
     totalScores[activePlayer] = 0;
     document.getElementById("current-" + activePlayer).innerHTML = "0";
     document.getElementById("score-" + activePlayer).textContent = "0";
@@ -17,15 +21,20 @@ function rollDie() {
     togglePlayer();
     return;
   }
-  previousRoll = roll;
+  previousRoll0 = roll0;
+  previousRoll1 = roll1;
 
-  const diceDOM = document.querySelector(".dice");
-  diceDOM.style.display = "block";
-  diceDOM.src = "dice-" + roll + ".png";
+  const dice0 = document.getElementById("dice-0");
+  dice0.style.display = "block";
+  dice0.src = "dice-" + roll0 + ".png";
 
-  if (roll > 1) {
+  const dice1 = document.getElementById("dice-1");
+  dice1.style.display = "block";
+  dice1.src = "dice-" + roll1 + ".png";
+
+  if (roll0 > 1 && roll1 > 1) {
     // add the score to current
-    roundScore += roll;
+    roundScore += (roll0 + roll1);
     document.getElementById("current-" + activePlayer).innerHTML =
       "<em>" + roundScore + "</em>";
   } else {
@@ -48,7 +57,7 @@ function togglePlayer() {
     .classList.toggle("active");
 
   //adding so that the previous roll is not compared against the last player
-  previousRoll = 0;
+  previousRoll0 = 0;
 }
 
 function showExtraElements(shown) {
@@ -84,7 +93,8 @@ function newGame() {
   document.getElementById("name-0").innerText = "Player 1";
   document.getElementById("name-1").innerText = "Player 2";
   showExtraElements(true);
-  previousRoll = 0;
+  previousRoll0 = 0;
+  previousRoll1 = 0;
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
